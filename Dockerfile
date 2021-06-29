@@ -1,4 +1,4 @@
-FROM https://github.com/batonogov/docker-pyinstaller.git
+FROM batonogov/pyinstaller-windows
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
