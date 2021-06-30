@@ -2,6 +2,7 @@
 
 # Fail on errors.
 set -e
+set +x
 
 # Make sure .bashrc is sourced
 . /root/.bashrc
