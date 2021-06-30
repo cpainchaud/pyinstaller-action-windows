@@ -19,6 +19,8 @@ WORKDIR=${SRCDIR:-/src}
 
 SPEC_FILE=${4:-*.spec}
 
+EXTRA_PYPATHS=$5
+
 python -m pip install --upgrade pip wheel setuptools
 
 #
@@ -45,11 +47,17 @@ if [ -f $5 ]; then
     pip install -r $5
 fi # [ -f $5 ]
 
+if [[ -d $SPEC_FILE ]]
+then
+   for i in $SPEC_FILE/*.py; do
+       pyinstaller --clean -y --dist -F $i --paths=$5
+   done    
+else
+   pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
+fi
 
 
-# if [[ "$@" == "" ]]; then
-pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
+
+
 chown -R --reference=. ./dist/windows
-# else
-    # sh -c "$@"
-# fi # [[ "$@" == "" ]]
+
