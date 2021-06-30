@@ -51,7 +51,8 @@ fi # [ -f $5 ]
 if [[ -d $SPEC_FILE ]]
 then
    for i in $SPEC_FILE/*.py; do
-       pyinstaller --clean -y --dist ./dist/windows -F $i --paths=$5
+       echo pyinstaller --clean -y --dist ./dist/windows -F $i -p $5
+       pyinstaller --clean -y --dist ./dist/windows -F $i -p $5
    done    
 else
    pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
