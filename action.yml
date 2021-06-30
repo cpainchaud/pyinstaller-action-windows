@@ -42,4 +42,4 @@ runs:
     - ${{ inputs.pypi_index_url }}
     - ${{ inputs.spec }}
     - ${{ inputs.requirements }}
-    - ${{ extra_python_path }}
+    - ${{ extra_python_paths }}
