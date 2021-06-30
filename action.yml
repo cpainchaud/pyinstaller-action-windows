@@ -21,6 +21,10 @@ inputs:
     description: 'Specify a file path for .spec file'
     required: False
     default: ""
+  extra_python_paths:
+    description: 'additional paths for python'
+    required: False
+    default: ""
   requirements:
     description: 'Specify a file path for requirements.txt file'
     required: False
@@ -38,3 +42,4 @@ runs:
     - ${{ inputs.pypi_index_url }}
     - ${{ inputs.spec }}
     - ${{ inputs.requirements }}
+    - ${{ extra_python_path }}
