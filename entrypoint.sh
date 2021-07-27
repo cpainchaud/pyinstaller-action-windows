@@ -51,6 +51,10 @@ fi # [ -f $5 ]
 if [[ -d $SPEC_FILE ]]
 then
    for i in $SPEC_FILE/*.py; do
+       if [[ $i =~ __init__.py$ ]]
+       then
+           continue
+       fi
        echo pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS
        pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS
    done    
