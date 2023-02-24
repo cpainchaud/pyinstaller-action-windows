@@ -1,4 +1,4 @@
-FROM engineervix/pyinstaller-windows
+FROM batonogov/docker-pyinstaller
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
