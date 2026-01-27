@@ -62,11 +62,11 @@ then
            continue
        fi
        echo "pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS --collect-data $COLLECT_DATA"
-       pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS --collect-data $COLLECT_DATA
+       pyinstaller -y --dist ./dist/windows -F $i --collect-data $COLLECT_DATA -p $EXTRA_PYPATHS --collect-data not_exist
    done    
 else
    echo "pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE --collect-data $COLLECT_DATA"
-   pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE --collect-data $COLLECT_DATA
+   pyinstaller -y --dist ./dist/windows --workpath /tmp $SPEC_FILE --collect-data $COLLECT_DATA
 fi
 
 
