@@ -22,6 +22,8 @@ SPEC_FILE=${4:-*.spec}
 
 EXTRA_PYPATHS=$6
 
+COLLECT_DATA=$7
+
 python -m pip install --upgrade pip wheel setuptools
 
 #
@@ -55,11 +57,11 @@ then
        then
            continue
        fi
-       echo pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS
-       pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS
+       echo pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS --collect-data $COLLECT_DATA
+       pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS --collect-data $COLLECT_DATA
    done    
 else
-   pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
+   pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE --collect-data $COLLECT_DATA
 fi
 
 
