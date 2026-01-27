@@ -4,8 +4,6 @@
 set -e
 set +x
 
-exit 1
-
 # Make sure .bashrc is sourced
 . /root/.bashrc
 
@@ -26,6 +24,8 @@ EXTRA_PYPATHS=$6
 
 COLLECT_DATA=$7
 
+
+echo "** Setting up python"
 python -m pip install --upgrade pip wheel setuptools
 
 #
@@ -46,8 +46,10 @@ if [[ "$PYPI_URL" != "https://pypi.python.org/" ]] || \
     cat /wine/drive_c/users/root/pip/pip.ini
 fi
 
+echo " *** Switching to workdir $WORKDIR"
 cd $WORKDIR
 
+# if $5 if not blank, install its requirements
 if [ -f $5 ]; then
     pip install -r $5
 fi # [ -f $5 ]
@@ -59,10 +61,11 @@ then
        then
            continue
        fi
-       echo pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS --collect-data $COLLECT_DATA
+       echo "pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS --collect-data $COLLECT_DATA"
        pyinstaller --clean -y --dist ./dist/windows -F $i -p $EXTRA_PYPATHS --collect-data $COLLECT_DATA
    done    
 else
+   echo "pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE --collect-data $COLLECT_DATA"
    pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE --collect-data $COLLECT_DATA
 fi
 
