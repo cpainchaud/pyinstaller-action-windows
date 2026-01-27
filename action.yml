@@ -29,6 +29,10 @@ inputs:
     description: 'Specify a file path for requirements.txt file'
     required: False
     default: "requirements.txt"
+  collect_data:
+    description: 'Specify modules you want to collect data for and embed in package'
+    required: False
+    default: ""
 outputs:
   output:
     description: 'The output of PyInstaller'
@@ -43,3 +47,4 @@ runs:
     - ${{ inputs.spec }}
     - ${{ inputs.requirements }}
     - ${{ inputs.extra_python_paths }}
+    - ${{ inputs.collect_data }}
