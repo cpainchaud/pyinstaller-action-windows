@@ -4,6 +4,8 @@
 set -e
 set +x
 
+exit 1
+
 # Make sure .bashrc is sourced
 . /root/.bashrc
 
